@@ -1,1 +1,46 @@
-<p>login works!</p>
+<form [formGroup]="loginForm" (ngSubmit)="checkUserAuthentication()" >
+    <div class="mt-4">
+    <div class="row">
+        <div class="col">
+        <label>
+          Mobile No (+91) <span style="color:red">*</span>
+        </label>
+    </div>
+    <div class="col">
+        <input formControlName="mobileNo" type="tel" limit-to="10">
+        <div *ngIf="formErrors.mobileNo" class="error-field">
+          <span class="alert" *ngFor="let errorsm of formErrors.mobileNo">{{errorsm}}
+          </span>
+        
+        </div>
+    </div>
+</div>
+    <div class="row mt-2">
+            <div class="col">
+        <label >
+           Password <span style="color:red">*</span>
+        </label>
+    </div>
+    <div class="col">
+        <input formControlName="Password" type="password">
+        <div *ngIf="formErrors.Password">
+          <span *ngFor="let errorsp of formErrors.Password">{{errorsp}}
+          </span>
+        </div>
+    </div>
+</div>
+    <div class="row mt-4">
+        <div class="col text-center">
+            <button class="btn btn-success" [disabled]="!loginForm.valid" type="submit">
+     Sign In
+    </button>
+    <button class="btn btn-outline-primary mx-2" (click)="navigateToUserRegistration();" type="submit">
+            Register
+            </button>
+</div>
+
+
+</div>
+
+    </div>
+  </form>

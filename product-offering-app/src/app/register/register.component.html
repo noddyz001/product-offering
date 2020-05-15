@@ -1,0 +1,109 @@
+<form [formGroup]="signUpForm" (ngSubmit)="signUpUser(signUpForm.value)">
+        <div class="row">
+          <div class="col-md-5 text-wrap">
+              
+             <label style="font-family: Playfair Display; font-size:15px;" position="floating">
+                (+91) Mobile Number<span style="color:red">*</span>
+           </label>
+           </div>
+           <div class="col-md-7">
+             <input formControlName="mobileNo"  type="tel">            
+             
+             <div *ngIf="formErrors.mobileNo" class="error-field" >
+           <span class="alert"  *ngFor="let errorsm of formErrors.mobileNo">{{errorsm}}
+           </span>
+           </div>
+           
+           </div>
+        </div>
+        <div class="row">
+            <div  class="col-md-5 text-wrap">
+               
+                 <label style="font-family: Playfair Display; font-size:15px;" position="floating">
+                 First Name <span style="color:red">*</span>   
+                 </label>
+                </div>
+                <div class="col-md-7">
+                 <input formControlName="firstName" type="text">  
+                 
+                 <div *ngIf="formErrors.firstName" class="error-field" >
+                   <span class="alert"  *ngFor="let errors of formErrors.firstName">{{errors}}
+                   </span>
+                   </div>
+               
+             </div>
+            </div>
+          <div class="row">
+                <div  class="col-md-5 text-wrap">
+               
+                 <label style="font-family: Playfair Display; font-size:15px;" position="floating">
+                  Last Name
+                 </label>
+                </div>
+                <div class="col-md-7">
+                 <input formControlName="lastName" type="text">  
+                 
+                 
+               
+             </div>
+            </div>
+        <div class="row">
+                <div  class="col-md-5 text-wrap">
+             
+               <label style="font-family: Playfair Display; font-size:15px;" position="floating">
+                  Email <span style="color:red">*</span>
+               </label>
+            </div>
+            <div class="col-md-7">
+               <input type="email" formControlName="email">   
+               
+               <div *ngIf="formErrors.email" class="error-field" >
+                 <span class="alert"  *ngFor="let errors of formErrors.email">{{errors}}
+                 </span>
+                 </div>
+             
+           </div>
+        </div>
+        <div class="row">
+                <div  class="col-md-5 text-wrap">
+                
+               <label >
+                Password(Minimun 7 Characters) <span style="color:red">*</span>
+               </label>
+            </div>
+            <div class="col-md-7">
+               <input type="password" formControlName="Password" validateEqual="confirmPassword" reverse="true">            
+               
+               <div *ngIf="formErrors.Password" class="error-field" >
+                 <span class="alert"  *ngFor="let errors of formErrors.Password">{{errors}}
+                 </span>
+                 </div>
+             
+             </div>
+           </div>
+          <div class="row">
+                <div  class="col-md-5 text-wrap">
+                
+               <label >
+                 Confirm Password <span style="color:red">*</span>
+               </label>
+            </div>
+            <div class="col-md-7">
+               <input type="password" formControlName="confirmPassword" validateEqual="Password" reverse="false">            
+               
+               <div *ngIf="formErrors.confirmPassword" class="error-field" >
+                 <span class="alert"  *ngFor="let errors of formErrors.confirmPassword">{{errors}}
+                 </span>
+                 </div>
+             
+             </div>
+           </div>
+           <br>
+           <div class="row ">
+               <div class="col text-center">
+           <button  type="submit"  class="btn-success btn-sm"  [disabled]="!signUpForm.valid"  >
+              Sign Up
+           </button>
+        </div>
+        </div>
+       </form>
