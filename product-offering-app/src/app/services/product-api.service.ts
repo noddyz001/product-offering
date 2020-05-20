@@ -6,7 +6,7 @@ import { retry, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductApiService {
-  apiURL = 'http://localhost:8080/SBS/PM';
+  apiURL = 'http://localhost:9090/';
   constructor(private http: HttpClient) { }
   
    getProducts(category){
@@ -23,6 +23,23 @@ export class ProductApiService {
     header.append("Content-Type", "application/json");
     header.append("Access-Control-Allow-Origin","*");
      return  this.http.post(this.apiURL+"/placeOrder", data, { headers: header });
+   
+   }
+
+   signUp(data:any)
+   {
+    let header = new HttpHeaders();
+    header.append("Content-Type", "application/json");
+    header.append("Access-Control-Allow-Origin","*");
+     return  this.http.post(this.apiURL+"pclogin/register", data, { headers: header });
+   
+   }
+   login(data:any)
+   {
+    let header = new HttpHeaders();
+    header.append("Content-Type", "application/json");
+    header.append("Access-Control-Allow-Origin","*");
+     return  this.http.post(this.apiURL+"pclogin/login", data, { headers: header });
    
    }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators,FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import {ProductApiService} from '../services/product-api.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
       'required': 'Password is required.'
     },
   }
-  constructor(private router:Router) {
+  constructor(private router:Router,private api:ProductApiService) {
     this.loginForm = new FormGroup({
       mobileNo: new FormControl('', Validators.compose([
         Validators.pattern('^\\d+$'),
@@ -70,6 +71,25 @@ export class LoginComponent implements OnInit {
 
   async checkUserAuthentication()
   {
+    if (this.loginForm.valid) {
+    
+ 
+      this.api.login({
+        "mobileNo": this.loginForm.value.mobileNo,
+        "password": this.loginForm.value.Password
+      }).subscribe((data: any) => {
+        if (data.success == 'true') {
+          alert('Login successful');
+        }
+        else {
+          
+        }
+      },
+        //data success ends
+        (error: any) => {
+         
+        });
+    }
 
   }
 

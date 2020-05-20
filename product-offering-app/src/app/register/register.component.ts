@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators,FormGroup, FormControl, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import {ProductApiService} from '../services/product-api.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -40,7 +41,7 @@ export class RegisterComponent implements OnInit {
      'pattern': 'Enter a valid email.'
     }
   }
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,private api:ProductApiService) { }
 
   ngOnInit(): void {
     this.signUpForm = this.formBuilder.group({
@@ -91,6 +92,35 @@ export class RegisterComponent implements OnInit {
 
   async signUpUser(data)
   {
+    if(this.signUpForm.valid)
+    {
+        //console.log(encryptPassword);
+    this.api.signUp({
+      "mobileNo": data.mobileNo,
+      "email": data.email,
+      "password": data.password,
+      "firstName": data.firstName,
+      "lastName": data.lastName
+     
+    }).subscribe((data:any)=>{
+      console.log(data);
+      if(data.success=='true'){
+   
+        
+        alert('User Successfully Created'); 
+       
+         }
+           else{
+            
+            alert(data.commandsummary); 
+           }
+        },
+        //data success ends
+        (error:any) => {
+         
+        });
+      }
+     }
 
-  }
+   
 }
