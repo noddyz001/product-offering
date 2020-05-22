@@ -7,12 +7,16 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'product-offering-app';
-  constructor(private router:Router)
+  constructor(private router: Router)
   {}
   navigateToLogin()
   {
-   
     this.router.navigate(['/login']);
+  }
+
+  navigateToOrders()
+  {
+    this.router.navigate(['/orderPage']);
   }
 
 }

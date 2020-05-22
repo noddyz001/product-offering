@@ -6,16 +6,22 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule } from '@angular/common/http';
+import { OrderPageComponent} from './order-page/order-page.component';
+import { AgGridModule } from 'ag-grid-angular';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    OrderPageComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,FormsModule, ReactiveFormsModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AgGridModule.withComponents([OrderPageComponent])
   ],
   providers: [],
   bootstrap: [AppComponent]
