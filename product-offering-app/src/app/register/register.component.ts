@@ -98,13 +98,13 @@ export class RegisterComponent implements OnInit {
     this.api.signUp({
       "mobileNo": data.mobileNo,
       "email": data.email,
-      "password": data.password,
+      "password": data.Password,
       "firstName": data.firstName,
       "lastName": data.lastName
      
     }).subscribe((data:any)=>{
       console.log(data);
-      if(data.success=='true'){
+      if(data.success=='success'){
    
         
         alert('User Successfully Created'); 

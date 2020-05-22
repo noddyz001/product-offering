@@ -78,11 +78,11 @@ export class LoginComponent implements OnInit {
         "mobileNo": this.loginForm.value.mobileNo,
         "password": this.loginForm.value.Password
       }).subscribe((data: any) => {
-        if (data.success == 'true') {
-          alert('Login successful');
+        if (data.success == 'success') {
+          alert(data.msg);
         }
         else {
-          
+          alert(data.msg);
         }
       },
         //data success ends
